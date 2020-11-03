@@ -1,0 +1,41 @@
+{% extends 'navbar.html' %}
+
+{% load static %}
+{%block body %}
+
+<div class="container">
+	<h2 class="text-center">Add Doctor</h2><br><br>
+	<form method="post" action="">
+		{% csrf_token %}
+		
+		<label>Doctor Name</label>
+		<input type="text" class="form-control" name="name" required>
+		<label>contact</label>
+		<input type="text" class="form-control" name="contact" required><br>
+		<label>Specialization</label>
+		<input type="text" class="form-control" name="special" required><br>
+		<input type="submit" value="Submit" class="form-control btn btn-primary">
+
+	</form>
+</div>
+
+
+	{% ifequal error "no" %}
+<script>
+	alert('Logged In Successfully');
+	window.location=('{% url 'view_doctor' %}');
+</script>
+{% endifequal %}
+
+	{% ifequal error "yes" %}
+<script>
+	alert('Invalid User Credential, Please Try again');
+	window.location=('{% url 'home' %}');
+</script>
+{% endifequal %}
+
+
+
+
+
+{% endblock %}
